@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+application {
+    mainClassName = 'com.example.module2.HelloModule2'
+}
+
+dependencies {
+    // JUnit for testing
+    testImplementation 'junit:junit:4.13.2'
+
+    // Jackson for JSON processing
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
+
+
+    // SLF4J API for logging
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+
+    // SLF4J Simple binding for logging
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.36'
+}

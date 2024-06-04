@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+application {
+    mainClassName = 'com.example.module1.HelloModule1'
+}
+
+dependencies {
+    // JUnit for testing
+    testImplementation 'junit:junit:4.13.2'
+
+    // Apache Commons Lang for utility methods
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+
+    // SLF4J API for logging
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+
+    // SLF4J Simple binding for logging
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.36'
+
+    // Dependency on module2
+    implementation project(':module2')
+}
