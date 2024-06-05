@@ -9,7 +9,10 @@ public class HelloModule1 {
     }
 
     public void method1() {
-        System.out.println("Hello, world!");
+        int s = 2;
+        int y = 3;
+        int x = s + y;
+        System.out.println("Hello, world!" + x);
     }
 
     public void method2() {
@@ -22,5 +25,6 @@ public class HelloModule1 {
 
         //TODO
 
+        //TODO
     }
 }
