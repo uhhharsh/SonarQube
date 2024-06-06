@@ -7,16 +7,13 @@ build-job:
   stage: build
   script:
     - echo "Building the project..."
-    - null
 test-job:
   stage: test
   script:
     - echo "Running tests..."
-    - null
 deploy-job:
   stage: deploy
   script:
     - echo "Deploying the project..."
-    - null
   only:
     - master
