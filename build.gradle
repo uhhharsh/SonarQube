@@ -7,9 +7,9 @@
 plugins {
     id 'java'
     id 'application'
+//    id "jacoco"
     id "org.sonarqube" version "5.0.0.4638"
 }
-
 
 subprojects {
     apply plugin: 'java'
@@ -23,6 +23,29 @@ subprojects {
     }
 }
 
+//jacoco {
+//    toolVersion = "0.8.7" // Specify the version of JaCoCo
+//}
+//
+//jacocoTestReport {
+//    reports {
+//        xml.required.set(true)   // Enables the generation of XML report
+//        html.required.set(true)  // Enables the generation of HTML report
+//        csv.required.set(false)  // Disables the generation of CSV report
+//    }
+//}
+
+//test {
+//    finalizedBy jacocoTestReport
+//}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}
 
 sonarqube {
     properties {
@@ -32,5 +55,6 @@ sonarqube {
         property "sonar.organization", "your-organization"
         property "sonar.host.url", "http://localhost:9000"
         property "sonar.login", "sqp_47b4be7edf94ee1462df5fdfb3dee511a9ec01dd"
+//        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
     }
 }

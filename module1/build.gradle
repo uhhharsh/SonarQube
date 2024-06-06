@@ -1,13 +1,23 @@
 plugins {
     id 'java'
     id 'application'
+//    id 'jacoco'
 }
+
+repositories {
+    mavenCentral()
+}
+
 
 application {
     mainClassName = 'com.example.module1.HelloModule1'
 }
 
 dependencies {
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
     // JUnit for testing
     testImplementation 'junit:junit:4.13.2'
 
@@ -24,3 +34,32 @@ dependencies {
     // Dependency on module2
     implementation project(':module2')
 }
+
+//jacoco {
+//    toolVersion = "0.8.7"
+//}
+
+//test {
+//    useJUnitPlatform()
+//    finalizedBy jacocoTestReport
+//}
+//
+//jacocoTestReport {
+//    dependsOn test
+//    reports {
+//        xml.required.set(true)
+//        html.required.set(true)
+//    }
+//}
+//
+//task testCoverageVerification {
+//    dependsOn jacocoTestReport
+//    doLast {
+//        println "Checking for JaCoCo reports in ${buildDir}/reports/jacoco/test/html/index.html"
+//        if (!file("${buildDir}/reports/jacoco/test/html/index.html").exists()) {
+//            throw new GradleException("JaCoCo reports not found")
+//        } else {
+//            println("JaCoCo reports found!")
+//        }
+//    }
+//}
