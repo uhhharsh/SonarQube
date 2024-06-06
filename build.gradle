@@ -27,6 +27,8 @@ subprojects {
 sonarqube {
     properties {
         property "sonar.projectKey", "multi-module-project"
+        property "sonar.projectName", "parent"
+        property "sonar.qualitygate.wait", true
         property "sonar.organization", "your-organization"
         property "sonar.host.url", "http://localhost:9000"
         property "sonar.login", "sqp_47b4be7edf94ee1462df5fdfb3dee511a9ec01dd"
