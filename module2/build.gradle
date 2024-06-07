@@ -1,6 +1,11 @@
 plugins {
     id 'java'
     id 'application'
+//    id "org.sonarqube" version "5.0.0.4638"
+}
+
+repositories {
+    mavenCentral()
 }
 
 application {
@@ -16,11 +21,26 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 jacocoTestReport {
+    dependsOn test
     reports {
         xml.required.set(true)
         html.required.set(true)
     }
 }
+
+//sonarqube {
+//    properties {
+//        property "sonar.projectKey", "multi-module-project_module2"
+//        property "sonar.projectName", "module2"
+////        property "sonar.login", "sqp_47b4be7edf94ee1462df5fdfb3dee511a9ec01dd"
+//        property "sonar.sources", "src/main/java/com/example/module2"
+//        property "sonar.tests", "src/test/java/com/example/module2"
+//        property "sonar.java.binaries", "build/classes/java/main/com/example/module2"
+//        property "sonar.junit.reportPaths", "build/test-results/test"
+//        property "sonar.jacoco.reportPaths", "build/jacoco/test.exec"
+//    }
+//}

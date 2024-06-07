@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+//    id "org.sonarqube" version "5.0.0.4638"
 //    id 'jacoco'
 }
 
@@ -26,15 +27,11 @@ dependencies {
     implementation project(':module2')
 }
 
-//jacoco {
-//    toolVersion = "0.8.7"
-//}
-
 test {
     useJUnitPlatform()
-//    finalizedBy jacocoTestReport
+    finalizedBy jacocoTestReport
 }
-//
+
 jacocoTestReport {
     dependsOn test
     reports {
@@ -42,15 +39,15 @@ jacocoTestReport {
         html.required.set(true)
     }
 }
-//
-//task testCoverageVerification {
-//    dependsOn jacocoTestReport
-//    doLast {
-//        println "Checking for JaCoCo reports in ${buildDir}/reports/jacoco/test/html/index.html"
-//        if (!file("${buildDir}/reports/jacoco/test/html/index.html").exists()) {
-//            throw new GradleException("JaCoCo reports not found")
-//        } else {
-//            println("JaCoCo reports found!")
-//        }
+
+//sonarqube {
+//    properties {
+//        property "sonar.projectKey", "multi-module-project_module1"
+//        property "sonar.projectName", "module1"
+//        property "sonar.sources", "src/main/java/com/example/module1"
+//        property "sonar.tests", "src/test/java/com/example/module1"
+//        property "sonar.java.binaries", "build/classes/java/main/com/example/module1"
+//        property "sonar.junit.reportPaths", "build/test-results/test"
+//        property "sonar.jacoco.reportPaths", "build/jacoco/test.exec"
 //    }
 //}

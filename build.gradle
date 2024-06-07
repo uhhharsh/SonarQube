@@ -20,7 +20,7 @@ allprojects {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'jacoco'
-
+//    apply plugin: "org.sonarqube"
 //    repositories {
 //        mavenCentral()
 //    }
@@ -48,36 +48,13 @@ subprojects {
     }
 }
 
-//repositories {
-//    mavenCentral()
-//}
-//
-//dependencies {
-//    testImplementation 'junit:junit:4.13.2'
-//}
-//
-//test{
-//    useJUnitPlatform()
-//    finalizedBy jacocoTestReport
-//}
-//
-//jacocoTestReport {
-//    dependsOn test
-//    reports {
-//        xml.required.set(true)   // Enables the generation of XML report
-//    }
-//}
-//
-//jacoco {
-//    toolVersion = "0.8.11"
-//}
 
 sonarqube {
     properties {
         property "sonar.projectKey", "multi-module-project"
 //        property "sonar.projectName", "parent"
 //        property "sonar.qualitygate.wait", true
-        property "sonar.organization", "your-organization"
+        property "sonar.organization", "your-organization" // not used?
         property "sonar.host.url", "http://localhost:9000"
         property "sonar.login", "sqp_47b4be7edf94ee1462df5fdfb3dee511a9ec01dd"
         property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
