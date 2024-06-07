@@ -16,5 +16,6 @@ public class HelloModule1 {
 
         System.out.println("YO");
 
+        System.out.println("Automatic Assign?");
     }
 }
