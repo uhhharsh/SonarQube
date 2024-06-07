@@ -7,45 +7,70 @@
 plugins {
     id 'java'
     id 'application'
-//    id "jacoco"
+    id "jacoco"
     id "org.sonarqube" version "5.0.0.4638"
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'jacoco'
 
-    repositories {
-        mavenCentral()
-    }
+//    repositories {
+//        mavenCentral()
+//    }
 
     dependencies {
-        testImplementation 'junit:junit:4.13.2'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    }
+
+    test{
+        useJUnitPlatform()
+        finalizedBy jacocoTestReport // Ensure the JaCoCo report is generated after tests run
+    }
+
+    jacoco {
+        toolVersion = "0.8.11"
+    }
+
+    jacocoTestReport {
+        dependsOn test
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
     }
 }
 
-//jacoco {
-//    toolVersion = "0.8.7" // Specify the version of JaCoCo
+//repositories {
+//    mavenCentral()
+//}
+//
+//dependencies {
+//    testImplementation 'junit:junit:4.13.2'
+//}
+//
+//test{
+//    useJUnitPlatform()
+//    finalizedBy jacocoTestReport
 //}
 //
 //jacocoTestReport {
+//    dependsOn test
 //    reports {
 //        xml.required.set(true)   // Enables the generation of XML report
-//        html.required.set(true)  // Enables the generation of HTML report
-//        csv.required.set(false)  // Disables the generation of CSV report
 //    }
 //}
-
-//test {
-//    finalizedBy jacocoTestReport
+//
+//jacoco {
+//    toolVersion = "0.8.11"
 //}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation 'junit:junit:4.13.2'
-}
 
 sonarqube {
     properties {
@@ -55,6 +80,6 @@ sonarqube {
         property "sonar.organization", "your-organization"
         property "sonar.host.url", "http://localhost:9000"
         property "sonar.login", "sqp_47b4be7edf94ee1462df5fdfb3dee511a9ec01dd"
-//        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
     }
 }

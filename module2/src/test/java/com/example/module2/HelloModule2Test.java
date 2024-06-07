@@ -1,12 +1,12 @@
 package com.example.module2;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HelloModule2Test {
     @Test
-    public void testSayHello() {
-        HelloModule2 helloModule2 = new HelloModule2();
-        assertEquals("Hello from Module 2", helloModule2.sayHello());
+    public void testGetMessage() {
+        HelloModule2 hello = new HelloModule2();
+        assertEquals("Hello from module2", hello.getMessage());
     }
 }

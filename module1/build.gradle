@@ -21,15 +21,6 @@ dependencies {
     // JUnit for testing
     testImplementation 'junit:junit:4.13.2'
 
-    // Apache Commons Lang for utility methods
-    implementation 'org.apache.commons:commons-lang3:3.12.0'
-
-
-    // SLF4J API for logging
-    implementation 'org.slf4j:slf4j-api:1.7.36'
-
-    // SLF4J Simple binding for logging
-    runtimeOnly 'org.slf4j:slf4j-simple:1.7.36'
 
     // Dependency on module2
     implementation project(':module2')
@@ -39,18 +30,18 @@ dependencies {
 //    toolVersion = "0.8.7"
 //}
 
-//test {
-//    useJUnitPlatform()
+test {
+    useJUnitPlatform()
 //    finalizedBy jacocoTestReport
-//}
+}
 //
-//jacocoTestReport {
-//    dependsOn test
-//    reports {
-//        xml.required.set(true)
-//        html.required.set(true)
-//    }
-//}
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
 //
 //task testCoverageVerification {
 //    dependsOn jacocoTestReport
