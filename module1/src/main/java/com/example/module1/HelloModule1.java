@@ -8,14 +8,4 @@ public class HelloModule1 {
         return "Hello from Module 1 and " + module2.getMessage();
     }
 
-    public static void main(String[] args){
-        HelloModule1 hello = new HelloModule1();
-        System.out.println(hello.sayHello());
-
-        //TODO
-
-        System.out.println("YO");
-
-        System.out.println("Automatic Assign?");
-    }
 }
