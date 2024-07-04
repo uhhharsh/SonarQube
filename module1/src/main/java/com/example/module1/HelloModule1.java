@@ -8,4 +8,14 @@ public class HelloModule1 {
         return "Hello from Module 1 and " + module2.getMessage();
     }
 
+    public int task1(int a, int b) {
+        return a + b;
+    }
+
+    public int task2(int a, int b) {
+        int sum = a  + b;
+        return sum;
+    }
+
+    //TODO
 }

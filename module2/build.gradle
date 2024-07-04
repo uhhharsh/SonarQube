@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id "jacoco"
 //    id "org.sonarqube" version "5.0.0.4638"
 }
 
@@ -17,6 +18,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
 }
 
 test {
@@ -31,16 +33,3 @@ jacocoTestReport {
         html.required.set(true)
     }
 }
-
-//sonarqube {
-//    properties {
-//        property "sonar.projectKey", "multi-module-project_module2"
-//        property "sonar.projectName", "module2"
-////        property "sonar.login", "sqp_47b4be7edf94ee1462df5fdfb3dee511a9ec01dd"
-//        property "sonar.sources", "src/main/java/com/example/module2"
-//        property "sonar.tests", "src/test/java/com/example/module2"
-//        property "sonar.java.binaries", "build/classes/java/main/com/example/module2"
-//        property "sonar.junit.reportPaths", "build/test-results/test"
-//        property "sonar.jacoco.reportPaths", "build/jacoco/test.exec"
-//    }
-//}

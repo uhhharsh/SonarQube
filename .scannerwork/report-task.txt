@@ -1,0 +1,6 @@
+projectKey=multi-module-project
+serverUrl=http://localhost:9000
+serverVersion=10.5.0.89998
+dashboardUrl=http://localhost:9000/dashboard?id=multi-module-project
+ceTaskId=2de37df8-355c-4a5a-8b1d-fd16659ea3eb
+ceTaskUrl=http://localhost:9000/api/ce/task?id=2de37df8-355c-4a5a-8b1d-fd16659ea3eb

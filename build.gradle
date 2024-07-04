@@ -5,11 +5,9 @@ plugins {
     id "org.sonarqube" version "5.0.0.4638"
 }
 
-allprojects {
+subprojects {
     apply plugin: 'java'
     apply plugin: 'jacoco'
-    apply plugin: "org.sonarqube"
-    apply plugin: "jacoco"
 
     repositories {
         mavenCentral()
@@ -27,7 +25,6 @@ allprojects {
 
     jacoco {
         toolVersion = "0.8.11"
-//        reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
     }
 
     jacocoTestReport {
@@ -41,9 +38,12 @@ allprojects {
 
 sonarqube {
     properties {
+        // authorization
         property "sonar.projectKey", "multi-module-project"
         property "sonar.host.url", "http://localhost:9000"
         property "sonar.token", "sqp_e1cff53b92cb4a5917442c2ca8a4ce93be4e5123"
 
+        // inclusion properties
+//        property "sonar.inclusions", "module1/**.java"
     }
 }
