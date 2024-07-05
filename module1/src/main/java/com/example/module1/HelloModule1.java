@@ -7,6 +7,8 @@ public class HelloModule1 {
 
         System.out.println("Testing PR");
 
+        System.out.println("Testing git diff");
+
         HelloModule2 module2 = new HelloModule2();
         return "Hello from Module 1 and " + module2.getMessage();
     }
