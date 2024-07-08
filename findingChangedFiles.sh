@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Check if running in Jenkins environment
 if [ "$JENKINS_ENV" == "true" ]; then
     # Set workspace path dynamically

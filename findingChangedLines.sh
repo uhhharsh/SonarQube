@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Replace these with the actual commit hashes or references
 COMMIT1="remotes/origin/test"
 COMMIT2="main"

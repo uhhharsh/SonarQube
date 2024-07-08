@@ -14,6 +14,7 @@ def add_nosonar_to_file(file_path):
         print(f"Failed to process file {file_path}: {e}")
 
 def main():
+    # checking if the env is within a pipeline
     is_jenkins = os.getenv('JENKINS_ENV', 'false') == 'true'
     if is_jenkins:
         base_path = os.getenv('WORKSPACE', '.')
