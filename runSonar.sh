@@ -12,7 +12,8 @@ run_sonar_analysis() {
 
     if [ -n "$inclusions" ]; then
         ./gradlew sonarqube \
-        -Dsonar.inclusions="${inclusions}"
+        -Dsonar.inclusions="${inclusions}" \
+        -Dsonar.exlusions="**/*.java"
     else
         echo "No .java files found to include."
     fi
