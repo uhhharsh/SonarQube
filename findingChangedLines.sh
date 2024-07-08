@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Replace these with the actual commit hashes or references
-COMMIT1="HEAD"
+COMMIT1="test"
 COMMIT2="main"
 
 # Determine the environment (local or Jenkins)
