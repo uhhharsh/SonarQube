@@ -1,1 +1,3 @@
+changedFiles.txt
+findingChangedFiles.sh
 module1/src/main/java/com/example/module1/HelloModule1.java
