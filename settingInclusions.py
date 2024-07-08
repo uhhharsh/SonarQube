@@ -1,3 +1,6 @@
+import os
+import re
+
 def filter_java_files_from_file(file_path):
     included_files = []
 
@@ -27,9 +30,19 @@ def filter_java_files_from_file(file_path):
     
     return ','.join(included_files)
 
-# Example usage:
-file_path = '/Users/harsh.saini/Desktop/multi-module-project/parent/changedLines.txt'
-included_files = filter_java_files_from_file(file_path)
+def main():
+    is_jenkins = os.getenv('JENKINS_ENV', 'false') == 'true'
+    if is_jenkins:
+        workspace = os.getenv('WORKSPACE', '.')
+        file_path = os.path.join(workspace, 'changedLines.txt')
+    else:
+        # Local environment setup (replace with your local path)
+        file_path = '/Users/harsh.saini/Desktop/multi-module-project/parent/changedLines.txt'
 
-# Print the included files
-print(included_files)
+    included_files = filter_java_files_from_file(file_path)
+
+    # Print the included files
+    print(included_files)
+
+if __name__ == "__main__":
+    main()

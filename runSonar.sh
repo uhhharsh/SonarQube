@@ -2,18 +2,18 @@
 
 # Step 1: Python script to filter and generate SonarQube inclusions
 generate_sonar_inclusions() {
-    python3 /Users/harsh.saini/Desktop/multi-module-project/parent/settingInclusions.py
+    python3 settingInclusions.py
 }
 
 # Step 2: Run the SonarQube analysis using Gradle
 run_sonar_analysis() {
     inclusions=$(generate_sonar_inclusions)
-    echo $inclusions
+    echo "Inclusions: $inclusions"
 
     if [ -n "$inclusions" ]; then
         ./gradlew sonarqube \
-        -Dsonar.inclusions="${inclusions}" \
-        -Dsonar.exlusions="**/*.java"
+        -Dsonar.inclusions="$inclusions" \
+        -Dsonar.test.exclusions="**/*.java"
     else
         echo "No .java files found to include."
     fi

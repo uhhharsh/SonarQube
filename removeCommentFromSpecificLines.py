@@ -37,7 +37,13 @@ def parse_changed_lines(file_path):
     return files_to_process
 
 def main():
-    base_path = '/Users/harsh.saini/Desktop/multi-module-project/parent/'
+    is_jenkins = os.getenv('JENKINS_ENV', 'false') == 'true'
+    if is_jenkins:
+        base_path = os.getenv('WORKSPACE', '.')
+    else:
+        # Local environment setup (replace with your local path)
+        base_path = '/Users/harsh.saini/Desktop/multi-module-project/parent/'
+
     changed_lines_file = os.path.join(base_path, 'changedLines.txt')
     
     files_to_process = parse_changed_lines(changed_lines_file)
