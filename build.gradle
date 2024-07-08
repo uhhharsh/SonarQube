@@ -44,7 +44,7 @@ sonarqube {
         property "sonar.token", "sqp_e1cff53b92cb4a5917442c2ca8a4ce93be4e5123"
 
         // inclusion properties
-        property "sonar.inclusions", "module1/src/main/java/com/example/Calculator.java"
-        property "sonar.tests.exclusions", "**/*.java"
+//        property "sonar.exclusions", "**/*.java"
+//        property "sonar.tests.inclusions", "module1/src/test/java/com/example/CalculatorTest.java"
     }
 }
