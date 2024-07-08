@@ -1,16 +1,1 @@
-addingComments.py
-build.gradle
-changedFiles.txt
-changedLines.txt
-findingChangedFiles.sh
-findingChangedLines.sh
-module1/src/main/java/com/example/Calculator.java
 module1/src/main/java/com/example/module1/HelloModule1.java
-module1/src/test/java/com/example/CalculatorTest.java
-module1/src/test/java/com/example/module1/HelloModule1Test.java
-module2/src/main/java/com/example/module2/HelloModule2.java
-module2/src/test/java/com/example/module2/HelloModule2Test.java
-removeCommentFromSpecificLines.py
-removingComments.py
-runSonar.sh
-settingInclusions.py
