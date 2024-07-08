@@ -1,6 +1,6 @@
 # Replace these with the actual commit hashes or references
 COMMIT1="HEAD"
-COMMIT2="5545b356e441a869a0a365f32912319d211665ae"
+COMMIT2="main"
 
 # Get the changed lines between two commits, filter for added lines, and extract line numbers
 git diff -U0 $COMMIT1 $COMMIT2 | awk '
