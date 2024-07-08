@@ -11,6 +11,8 @@ public class HelloModule2 {
 
         System.out.println("Branch Test2");
 
+        System.out.println("Pipeline Test");
+
         //TODO
 
         //todo
