@@ -9,6 +9,8 @@ public class HelloModule2 {
         HelloModule2 hello = new HelloModule2();
         System.out.println(hello.getMessage());
 
+        System.out.println("Branch Test2");
+
         //TODO
 
         //todo
