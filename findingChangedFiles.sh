@@ -8,4 +8,4 @@ else
 fi
 
 # Run git diff command and save output to changedFiles.txt
-git diff --name-only remotes/origin/test main | sort -u > "$workspace/changedFiles.txt"
+git diff --name-only remotes/origin/test remotes/origin/main | sort -u > "$workspace/changedFiles.txt"
