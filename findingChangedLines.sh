@@ -1,6 +1,6 @@
 # Replace these with the actual commit hashes or references
 COMMIT1="remotes/origin/test"
-COMMIT2="main"
+COMMIT2="remotes/origin/main"
 
 # Determine the environment (local or Jenkins)
 if [ -n "$JENKINS_ENV" ]; then
