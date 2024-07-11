@@ -7,6 +7,12 @@ def run_git_diff():
     print("Git diff command output:\n", result.stdout)
     return result.stdout
 
+def run_git_diff_for_changed_files_names():
+    print("Running git diff --name-only command...")
+    result = subprocess.run(['git', 'diff', '--name-only', 'remotes/origin/main', 'remotes/origin/test', '--', '*.java'], capture_output=True, text=True)
+    print("Git diff command output:\n", result.stdout)
+    return result.stdout
+
 def parse_diff_output(diff_output):
     print("Parsing diff output...")
     file_changes = {}
@@ -57,7 +63,7 @@ def add_sonar_comments(file_changes):
             #checking if line 1 is in any range
             comment_at_line1 = True
             if(line_num == 1 and comment_at_line1):
-                lines[0] = lines[0].rstrip() + " //START-NOSONAR\n"
+                lines[0] = lines[0].rstrip() + " //START-NOSCAN\n"
 
             for change in changes:
                 start, end = change
@@ -67,15 +73,15 @@ def add_sonar_comments(file_changes):
                 if line_num == start:
                     print(f"Line {line_num}: {line.strip()}")
                     if (start-1) > 0:
-                        # Add // END-NOSONAR to the end of the previous line
-                        lines[start-2] = lines[start-2].rstrip() + " //END-NOSONAR\n"
-                        print(f'comment //END-NOSONAR added at line number {start-1}')
+                        # Add // END-NOSCAN to the end of the previous line
+                        lines[start-2] = lines[start-2].rstrip() + " //END-NOSCAN\n"
+                        print(f'comment //END-NOSCAN added at line number {start-1}')
                 if line_num == end:
                     print(f"Line {line_num}: {line.strip()}")
                     if end < line_count:
-                        # Add // END-NOSONAR to the end of the previous line
-                        lines[end] = lines[end].rstrip() + " //START-NOSONAR\n"
-                        print(f'comment //START-NOSONAR added at line number {end+1}')
+                        # Add // END-NOSCAN to the end of the previous line
+                        lines[end] = lines[end].rstrip() + " //START-NOSCAN\n"
+                        print(f'comment //START-NOSCAN added at line number {end+1}')
 
         # Write the modified lines back to the file
         with open(file_path, 'w') as file:
@@ -97,9 +103,34 @@ def format_output(file_changes):
         formatted_ranges = [f'[{start},{end}]' if start != end else f'[{start}]' for start, end in line_ranges]
         print(f'{file}: {formatted_ranges}')
 
+def run_gradle_sonar(paths):
+    # Convert paths to comma-delimited string
+    comma_paths = ','.join(paths)
+
+    # Construct and run the Gradle command
+    command = f"./gradlew sonar -Dsonar.inclusions='{comma_paths}' -Dsonar.test.exclusions='**/*.*' --info"
+    print(f"Running command: {command}")
+
+    try:
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"Error running Gradle command: {e}")
+        print(e.output)
+
+def extract_file_paths(diff_output):
+    print("Extracting file paths from git diff output...")
+    file_paths = [line.strip() for line in diff_output.splitlines() if line.strip()]
+    print("Extracted file paths:\n", file_paths)
+    return file_paths
 
 if __name__ == "__main__":
     diff_output = run_git_diff()
     file_changes = parse_diff_output(diff_output)
     format_output(file_changes)
     add_sonar_comments(file_changes)
+    file_names = run_git_diff_for_changed_files_names()
+    paths = extract_file_paths(file_names)
+    run_gradle_sonar(paths)
+    
+
