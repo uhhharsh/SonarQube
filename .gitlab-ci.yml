@@ -1,13 +1,13 @@
 workflow:
   rules:
     - if: $CI_MERGE_REQUEST_ID 
-    
+
 stages:
   - complete
 
 variables:
-  SOURCE_BRANCH: "test"    # Replace with your source branch
-  TARGET_BRANCH: "main"    # Replace with your target branch
+  SOURCE_BRANCH: $CI_SOURCE_BRANCH    # Replace with your source branch
+  TARGET_BRANCH: $CI_TARGET_BRANCH    # Replace with your target branch
 
 complete_job:
   stage: complete
@@ -28,7 +28,7 @@ complete_job:
     - git diff remotes/origin/$TARGET_BRANCH remotes/origin/$SOURCE_BRANCH -- '*.java'
     - echo ${CI_PROJECT_DIR}
     - echo "Building the project..."
-    - ./gradlew clean build --info
+    - ./gradlew clean build -x test --parallel --no-daemon
     - echo "Running Python script to instrument code..."
     - python3 InstrumentingCode.py
 
