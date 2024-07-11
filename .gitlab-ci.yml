@@ -22,6 +22,6 @@ complete_job:
     - echo "Building the project..."
     - ./gradlew clean build --info
     - echo "Running Python script to instrument code..."
-    - python3 InstrumentingCode.py
+    - python3 parent/InstrumentingCode.py
 
     
