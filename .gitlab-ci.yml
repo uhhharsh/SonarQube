@@ -25,5 +25,6 @@ build_job:
   tags:
     - SonarQube 
   script:
+    - echo ${CI_PROJECT_DIR}
     - echo "Building the project..."
     - ./gradlew clean build --info
