@@ -19,4 +19,4 @@ diff_job:
     - echo "Fetching the source branch"
     - git fetch origin $SOURCE_BRANCH:$SOURCE_BRANCH
     - echo "Displaying the diff between $SOURCE_BRANCH and $TARGET_BRANCH"
-    - git diff remotes/origin/$SOURCE_BRANCH remotes/origin/$TARGET_BRANCH
+    - git diff remotes/origin/$TARGET_BRANCH remotes/origin/$SOURCE_BRANCH
