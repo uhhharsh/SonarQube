@@ -1,31 +1,27 @@
 workflow:
   rules:
-    - if: $CI_MERGE_REQUEST_ID 
+    - if: $CI_MERGE_REQUEST_ID
 
 stages:
   - complete
 
-variables:
-  SOURCE_BRANCH: "sample"    # Replace with your source branch
-  TARGET_BRANCH: "main"    # Replace with your target branch
-
 complete_job:
   stage: complete
   tags:
-    - SonarQube 
+    - $SONARQUBE_TAG
   script:
     - echo "Fetching the latest changes..."
     - git fetch origin
-    - echo "Fetching the source branch test..."
-    - git fetch origin $SOURCE_BRANCH
-    - echo "Switching to source branch test"
-    - git checkout $SOURCE_BRANCH
-    - echo "Pulling source branch"
-    - git pull origin $SOURCE_BRANCH
-    - echo "Fetching the target branch main"
-    - git fetch origin $TARGET_BRANCH
-    - echo "Displaying the diff between $TARGET_BRANCH and $SOURCE_BRANCH"
-    - git diff remotes/origin/$TARGET_BRANCH remotes/origin/$SOURCE_BRANCH -- '*.java'
+    - echo "Fetching the SOURCE branch..."
+    - git fetch origin $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    - echo "Switching to SOURCE branch "
+    - git checkout $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    - echo "Pulling SOURCE branch"
+    - git pull origin $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    - echo "Fetching the TARGET branch "
+    - git fetch origin $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+    - echo "Displaying the diff between $CI_MERGE_REQUEST_TARGET_BRANCH_NAME and $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+    - git diff remotes/origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME remotes/origin/$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME -- '*.java'
     - echo ${CI_PROJECT_DIR}
     - echo "Building the project..."
     - ./gradlew clean build -x test --parallel --no-daemon

@@ -39,12 +39,9 @@ subprojects {
 sonarqube {
     properties {
         // authorization
-        property "sonar.projectKey", "multi-module-project"
-        property "sonar.host.url", "http://localhost:9000"
-        property "sonar.token", "squ_df68b1e51c772f20467cefbbfcbd19395a89c562"
+        property "sonar.projectKey", findProperty('sonar.projectKey') ?: 'default-project-key'
+        property "sonar.host.url", findProperty('sonar.host.url') ?: 'http://localhost:9000'
+        property "sonar.token", findProperty('sonar.token') ?: 'default-token'
 
-        // inclusion properties
-//        property "sonar.exclusions", "**/*.java"
-//        property "sonar.tests.inclusions", "module1/src/test/java/com/example/CalculatorTest.java"
     }
 }
