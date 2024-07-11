@@ -12,6 +12,8 @@ complete_job:
   script:
     - echo "Fetching the latest changes..."
     - git fetch origin
+    - echo "Fetching the source branch test..."
+    - git fetch origin $SOURCE_BRANCH
     - echo "Switching to source branch test"
     - git checkout $SOURCE_BRANCH
     - echo "Fetching the target branch main"
@@ -22,6 +24,6 @@ complete_job:
     - echo "Building the project..."
     - ./gradlew clean build --info
     - echo "Running Python script to instrument code..."
-    - python3 parent/InstrumentingCode.py
+    - python3 InstrumentingCode.py
 
     
