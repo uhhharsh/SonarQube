@@ -6,8 +6,8 @@ stages:
   - complete
 
 variables:
-  SOURCE_BRANCH: $CI_SOURCE_BRANCH    # Replace with your source branch
-  TARGET_BRANCH: $CI_TARGET_BRANCH    # Replace with your target branch
+  SOURCE_BRANCH: "sample"    # Replace with your source branch
+  TARGET_BRANCH: "main"    # Replace with your target branch
 
 complete_job:
   stage: complete
