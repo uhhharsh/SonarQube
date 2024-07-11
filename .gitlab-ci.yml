@@ -6,13 +6,10 @@ variables:
   SOURCE_BRANCH: "test"    # Replace with your source branch
   TARGET_BRANCH: "main"    # Replace with your target branch
 
-before_script:
-  - apt-get update -y
-  - apt-get install -y git
-   - apt-get install -y openjdk-17-jdk  # Example for installing OpenJDK 17
-
 diff_job:
   stage: diff
+  tags:
+    - SonarQube 
   script:
     - echo "Fetching the latest changes..."
     - git fetch origin
@@ -25,6 +22,8 @@ diff_job:
 
 build_job:
   stage: build
+  tags:
+    - SonarQube 
   script:
     - echo "Building the project..."
     - ./gradlew clean build --info
