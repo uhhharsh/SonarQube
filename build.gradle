@@ -41,7 +41,7 @@ sonarqube {
         // authorization
         property "sonar.projectKey", "multi-module-project"
         property "sonar.host.url", "http://localhost:9000"
-        property "sonar.token", "sqp_e1cff53b92cb4a5917442c2ca8a4ce93be4e5123"
+        property "sonar.token", "squ_df68b1e51c772f20467cefbbfcbd19395a89c562"
 
         // inclusion properties
 //        property "sonar.exclusions", "**/*.java"
