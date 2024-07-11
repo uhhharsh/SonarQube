@@ -1,14 +1,12 @@
 stages:
-  - diff
-  - instrument
-  - build
+  - complete
 
 variables:
   SOURCE_BRANCH: "test"    # Replace with your source branch
   TARGET_BRANCH: "main"    # Replace with your target branch
 
-diff_job:
-  stage: diff
+complete_job:
+  stage: complete
   tags:
     - SonarQube 
   script:
@@ -20,22 +18,10 @@ diff_job:
     - git fetch origin $TARGET_BRANCH
     - echo "Displaying the diff between $SOURCE_BRANCH and $TARGET_BRANCH"
     - git diff remotes/origin/$TARGET_BRANCH remotes/origin/$SOURCE_BRANCH -- '*.java'
-
-instrument_job:
-  stage: instrument
-  tags:
-    - SonarQube 
-  script:
-    - echo "Running Python script to instrument code..."
-    - python3 InstrumentingCode.py
-
-build_job:
-  stage: build
-  tags:
-    - SonarQube 
-  script:
     - echo ${CI_PROJECT_DIR}
     - echo "Building the project..."
     - ./gradlew clean build --info
-    - echo "Running SonarQube Analysis"
-    - ./gradlew sonar --info
+    - echo "Running Python script to instrument code..."
+    - python3 InstrumentingCode.py
+
+    
