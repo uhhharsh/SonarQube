@@ -1,6 +1,7 @@
 stages:
   - diff
   - build
+  - instrument
 
 variables:
   SOURCE_BRANCH: "test"    # Replace with your source branch
@@ -28,3 +29,11 @@ build_job:
     - echo ${CI_PROJECT_DIR}
     - echo "Building the project..."
     - ./gradlew clean build --info
+
+instrument_job:
+  stage: instrument
+  tags:
+    - SonarQube 
+  script:
+    - echo "Running Python script to instrument code..."
+    - python3 InstrumentingCode.py
