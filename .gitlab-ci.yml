@@ -14,9 +14,9 @@ diff_job:
   script:
     - echo "Fetching the latest changes..."
     - git fetch origin
-    - echo "Switching to target branch"
-    - git checkout $TARGET_BRANCH
-    - echo "Fetching the source branch"
-    - git fetch origin $SOURCE_BRANCH:$SOURCE_BRANCH
+    - echo "Switching to source branch test"
+    - git checkout $SOURCE_BRANCH
+    - echo "Fetching the target branch main"
+    - git fetch origin $TARGET_BRANCH
     - echo "Displaying the diff between $SOURCE_BRANCH and $TARGET_BRANCH"
-    - git diff remotes/origin/$TARGET_BRANCH remotes/origin/$SOURCE_BRANCH
+    - git diff remotes/origin/$TARGET_BRANCH remotes/origin/$SOURCE_BRANCH -- '*.java'
