@@ -1,5 +1,6 @@
 stages:
   - diff
+  - build
 
 variables:
   SOURCE_BRANCH: "test"    # Replace with your source branch
@@ -20,3 +21,9 @@ diff_job:
     - git fetch origin $TARGET_BRANCH
     - echo "Displaying the diff between $SOURCE_BRANCH and $TARGET_BRANCH"
     - git diff remotes/origin/$TARGET_BRANCH remotes/origin/$SOURCE_BRANCH -- '*.java'
+
+build_job:
+  stage: build
+  script:
+    - echo "Building the project..."
+    - ./gradlew clean build --info
